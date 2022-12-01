@@ -6,18 +6,19 @@ def parse_data(data):
 
 
 def highest_calories():
-    result = 0
     counter = 0
     file = open("data.txt", "r")
     data = list(map(parse_data, file.read().splitlines()))
+    calories = []
     for i in data:
         if i != '':
             counter += i
         else:
-            if counter > result:
-                result = counter
+            calories.append(counter)
             counter = 0
-    return result
+    calories.sort(reverse=True)
+    first, second, third, *rest = calories
+    print(first + second + third)
 
 
-print("Most calories: " + str(highest_calories()))
+highest_calories()
