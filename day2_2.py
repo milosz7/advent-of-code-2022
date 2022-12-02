@@ -39,7 +39,6 @@ def result_duel(moves):
             points += (draw_score_if_opponent_played.get(opponent_move) + 3)
         case "Z":
             points += (winning_score_if_opponent_played.get(opponent_move) + 6)
-    print(opponent_move, player_move, points)
     return points
 
 
