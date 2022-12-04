@@ -3,18 +3,12 @@ def parse_data(data):
     return list(map(lambda pair: [int(elem) for elem in pair.split('-')], pairs))
 
 
-def check_pair(pair):
-    def get_range(a, b): return b - a
-    first, second, *rest = pair
-    higher_range = first
-    lower_range = second
-    if get_range(*second) > get_range(*first):
-        higher_range = second
-        lower_range = first
-    if lower_range[0] >= higher_range[0] and lower_range[1] <= higher_range[1]:
+def check_pair(first, second):
+    first_set = set(x for x in range(first[0], first[1] + 1))
+    second_set = set(x for x in range(second[0], second[1] + 1))
+    if first_set.issubset(second_set) or second_set.issubset(first_set):
         return 1
-    else:
-        return 0
+    return 0
 
 
 def count_repetition():
@@ -22,7 +16,7 @@ def count_repetition():
     file = open('day4.txt', 'r')
     data = list(map(parse_data, file.read().splitlines()))
     for pair in data:
-        repetitions += check_pair(pair)
+        repetitions += check_pair(*pair)
     print(repetitions)
 
 
