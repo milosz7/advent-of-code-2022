@@ -4,11 +4,10 @@ def parse_data(data):
 
 
 def is_intersecting(first, second):
-    first_sections = [x for x in range(first[0], first[1] + 1)]
-    second_sections = [x for x in range(second[0], second[1] + 1)]
-    for section in first_sections:
-        if section in second_sections:
-            return 1
+    first_sections = set(x for x in range(first[0], first[1] + 1))
+    second_sections = set(x for x in range(second[0], second[1] + 1))
+    if second_sections.intersection(first_sections):
+        return 1
     return 0
 
 
